@@ -1,6 +1,6 @@
-  <!-- Pagina html de login -->
+<!-- Pagina html de login -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,65 +10,96 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+  <script src="script.js" defer></script>
   <!-- Hoja de estilos externa -->
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <!-- Contenido del login  -->
-    <header>
+  <!-- Barra de navegación  -->
+  <header>
     <nav class="navbar">
-        <a href="#" class="logo">
-            <img src="logo.png" alt="logo de la pagina">
-            <h2>Plantados</h2>
+      <a href="#" class="logo">
+        <img src="logo.png" alt="logo de la pagina">
+        <h2>Plantados</h2>
+      </a>
+      <ul class="links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Plantas</a></li>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <button class="login-btn">Iniciar Sesión</button>
+    </nav>
+  </header>
 
-        </a>
-        <ul class="links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Plantas</a></li>
-            <li><a href="#">Sobre Nosotros</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-        <button class="login-btn">Iniciar Sesion</button>
-    </nav>    
-    </header>
-    <!-- Form pop -->
-     <div class="form-popup">
-        <div class="form-box">
-            <div class="form-details">
-                <h2>Bienvenido otra vez</h2>
-                <p>Por favor de ingresar su informacion para mantenerse conectado</p>
-            </div>
-            <div class="form-content">
-                <h2>Iniciar sesion</h2>
-                <form action="#">
-                    <div class="input-field">
-                      <input type="text" id="email" placeholder="Correo electronico" required>
-                      <label for="email"></label>
-                    </div>
-                    <div class="input-field">
-                      <input type="password" id="password" placeholder="Contraseña" required>
-                      <label for="password"></label>
-                      <a href="#" class="forgot-pass">Olvidaste tu contrasena</a>
-                    </div>
-                    <button type="submit" class="btn">Iniciar sesion</button>
-                  </form>
-                  
-                <div class="bottom-link">
-                    No tienes una cuenta?
-                    <a href="#">Registrate</a>
-                </div>
-            </div>
-            
+  <!-- Ventana emergente de login/registro -->
+  <div class="blur-bg-overlay">
+    <div class="form-popup">
+      <span class="close-btn material-symbols-rounded">close</span>
 
-
-
+      <!-- Formulario de inicio de sesión -->
+      <div class="form-box login">
+        <div class="form-details">
+          <h2>Bienvenido otra vez</h2>
+          <p>Por favor ingrese su información para mantenerse conectado</p>
         </div>
-     </div>
+        <div class="form-content">
+          <h2>Iniciar sesión</h2>
+          <form action="#">
+            <div class="input-field">
+              <input type="text" id="login-email" placeholder="Correo electrónico" required>
+              <label for="login-email"></label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="login-password" placeholder="Contraseña" required>
+              <label for="login-password"></label>
+              <a href="#" class="forgot-pass">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="btn">Iniciar sesión</button>
+          </form>
+          <div class="bottom-link">
+            ¿No tienes una cuenta?
+            <a href="#" id="signup-link">Regístrate</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Formulario de registro -->
+      <div class="form-box signup">
+        <div class="form-details">
+          <h2>Crear cuenta</h2>
+          <p>Para ser parte de esta comunidad, por favor ingrese su información</p>
+        </div>
+        <div class="form-content">
+          <h2>Regístrate</h2>
+          <form action="#">
+            <div class="input-field">
+              <input type="text" id="signup-email" placeholder="Correo electrónico" required>
+              <label for="signup-email"></label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="signup-password" placeholder="Crear contraseña" required>
+              <label for="signup-password"></label>
+            </div>
+            <div class="policy-test">
+              <input type="checkbox" id="policy">
+              <label for="policy">
+                Estoy de acuerdo con los
+                <a href="#">términos y condiciones</a>
+              </label>
+            </div>
+            <button type="submit" class="btn">Registrarse</button>
+          </form>
+          <div class="bottom-link">
+            ¿Ya tienes una cuenta?
+            <a href="#" id="login-link">Iniciar sesión</a>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
 </body>
-
 </html>
