@@ -9,7 +9,7 @@
 body {
     width: 100%;
     height: 100vh;
-    background: url("/home/usuario/proyecto-bd/login/fondo.jpg") center / cover no-repeat;
+    background: url("/home/usuario/proyecto-bd/pagina-inicio/fondo.jpg") center / cover no-repeat;
 }
 
 .header {
@@ -88,6 +88,7 @@ body {
 /* Estilos del formulario de inicio de sesión */
 .form-popup {
     position: fixed;
+    z-index: 1001;
     top: 50%;
     left: 50%;
     max-width: 720px;
@@ -275,8 +276,9 @@ form button:hover{
     height: 100%;
     opacity: 0;
     pointer-events: none;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(6px);
     transition: 0.1s ease;
+    z-index: 1000;
 }
 
 /* Estilos para adapatarlo al Script */
@@ -291,6 +293,181 @@ form button:hover{
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease, opacity 0.1s;
 }
+
+/*Estilos de la seccion de informacion de servicios*/
+.information-section {
+    width: 98%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    padding: 20px 75px;
+    margin-top: 200px;
+    background-color: #1a3019;
+    padding-bottom: 30px;
+    margin-bottom: 10px;
+    margin-left: 16px;
+}
+
+.information-1 i {
+    color: #ffffff;
+    transform: scaleX(0.90);
+    transform: scaleY(0.90);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+.information-content{
+    text-align: center;
+    display: flex;
+    justify-content: space-between
+}
+.information-section .information-content .information-1 p{
+    color: #ffffff;
+}
+
+.information-section .information-content .information-1 p {   
+    transform: scaleX(0.94); /* reduce el ancho a 90% */
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+h3{
+   font-size: 17px;
+   color: rgb(255, 255, 255);
+   text-transform: capitalize;
+}
+
+/* Estilos de la seccion de plantas */
+.products-container h2{
+    display: flex;
+    font-size: 50px;
+    justify-content: center;
+    align-items: center;
+    color: rgb(19, 19, 19);
+    padding-bottom: 17px;
+}
+
+.products-container {
+    background-color: rgb(255, 255, 255);
+    padding-top: 35px;
+    padding-bottom: 40px;
+}
+
+.products {
+    padding: 0 0 100px 0;
+    text-align: center;
+}
+.product img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+.product {
+    text-align: center;
+    box-shadow: 0 0 21px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+}
+
+.product img {
+    width: 150px;
+    height: 55%;
+    margin-bottom: 10px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.product img:hover {
+    transform: scale(1.16); /* Aumenta el tamaño de la imagen al pasar el cursor */
+}
+
+.product h3{
+    color: #274625;
+}
+
+.product p {
+   font-size: 15px; 
+   margin: 0;
+   color: black;
+   font-weight: 400;
+}
+
+.products h2 {
+    font-size: 40px;
+    color: #686868;
+    text-transform: capitalize;
+    margin-bottom: 50px;
+}
+
+.product-content {
+    display: grid;
+    padding-left: 15px;
+    padding-right: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 55px;
+}
+
+.aprender-mas-btn{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 2px 18px;
+    border-radius: 7px;
+    color: #fff;
+    background-color: #274625;
+}
+
+.aprender-mas-btn:hover {
+    background-color: #1a3019;
+}
+
+/*EStilos de la seccion de imagenes decorativas*/
+
+.service{
+    background-image: url("/home/usuario/proyecto-bd/pagina-inicio/imagenes-service/img1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 300px;
+}
+
+.footer-content-container{
+    background-color: rgb(255, 255, 255);
+    position: 45px 0;
+}
+
+.footer-content-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-content-container .link {
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    text-align: center; /* Centra el contenido dentro del contenedor */
+}
+
+.footer-content-container .link h3{
+    color: #1a1b1a;
+    font-size: 20px;
+    font-weight: 850px;
+    margin-bottom: 10px;
+}
+
+.link a {
+    color: #1a1b1a;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+
+}
+.link a:hover {
+    color: #274625;
+    text-decoration: none /* Agrega subrayado solo al pasar el mouse */
+}
+
+
+
 
 /* Formatos para adaptarse a diferente tamanos de pantalla */
 @media (max-width: 760px) {

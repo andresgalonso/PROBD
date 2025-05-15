@@ -1,0 +1,230 @@
+<!-- Pagina html de login -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantados-login</title>
+
+  <!-- Links de estilos externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script src="script.js" defer></script>
+  <!-- Hoja de estilos externa -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Contenido del login  -->
+  <!-- Barra de navegación  -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="logo de la pagina">
+        <h2>Plantados</h2>
+      </a>
+      <ul class="links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Plantas</a></li>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+      <button class="login-btn">Iniciar Sesión</button>
+    </nav>
+  </header>
+  <!-- Ventana emergente de login/registro -->
+  <div class="blur-bg-overlay">
+    <div class="form-popup">
+      <span class="close-btn material-symbols-rounded">close</span>
+
+      <!-- Formulario de inicio de sesión -->
+      <div class="form-box login">
+        <div class="form-details">
+          <h2>Bienvenido otra vez</h2>
+          <p>Por favor ingrese su información para mantenerse conectado</p>
+        </div>
+        <div class="form-content">
+          <h2>Iniciar sesión</h2>
+          <form action="#">
+            <div class="input-field">
+              <input type="text" id="login-email" placeholder="Correo electrónico" required>
+              <label for="login-email"></label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="login-password" placeholder="Contraseña" required>
+              <label for="login-password"></label>
+              <a href="#" class="forgot-pass">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="btn">Iniciar sesión</button>
+          </form>
+          <div class="bottom-link">
+            ¿No tienes una cuenta?
+            <a href="#" id="signup-link">Regístrate</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de registro -->
+      <div class="form-box signup">
+        <div class="form-details">
+          <h2>Crear cuenta</h2>
+          <p>Para ser parte de esta comunidad, por favor ingrese su información</p>
+        </div>
+        <div class="form-content">
+          <h2>Regístrate</h2>
+          <form action="#">
+            <div class="input-field">
+              <input type="text" id="signup-email" placeholder="Correo electrónico" required>
+              <label for="signup-email"></label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="signup-password" placeholder="Crear contraseña" required>
+              <label for="signup-password"></label>
+            </div>
+            <div class="policy-test">
+              <input type="checkbox" id="policy">
+              <label for="policy">
+                Estoy de acuerdo con los
+                <a href="#">términos y condiciones</a>
+              </label>
+            </div>
+            <button type="submit" class="btn">Registrarse</button>
+          </form>
+          <div class="bottom-link">
+            ¿Ya tienes una cuenta?
+            <a href="#" id="login-link">Iniciar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contenido posterior de la pagina principal -->
+  <!-- Contenido de primer section -->
+  <section class="information-section">
+    <div class="information-content">
+  
+      <div class="information-1">
+        <i class="fas fa-users fa-3x"></i>
+        <h3>Comunidad activa</h3>
+        <p>
+          Comparte tus dudas, experiencias y fotos con otros amantes de las plantas.
+        </p>
+      </div>
+  
+      <div class="information-1">
+        <i class="fas fa-lightbulb fa-3x"></i>
+        <h3>Guías prácticas</h3>
+        <p>
+          Encuentra consejos útiles sobre riego, luz, trasplantes y más.
+        </p>
+      </div>
+  
+      <div class="information-1">
+        <i class="fas fa-leaf fa-3x"></i>
+        <h3>Cuidados esenciales</h3>
+        <p>
+          Aprende lo básico para mantener tus plantas sanas: sustrato, riego, poda y prevención de plagas.
+        </p>
+      </div>
+  
+    </div>
+  </section>
+  
+    <!--Contenido de segundo section donde van las plantas-->
+    <main class="products-container" id="lista-1">
+      <h2>Plantas y flores</h2>
+      <div class="product-content">
+
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="1">Leer mas</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="2">Leer mas</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="3">Leer mas</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="4">Leer mas</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="5">Leer mas</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="6">Leer mas</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="7">Leer mas</a>
+          </div>
+        </div>
+        <div class="product">
+          <img src="/home/usuario/proyecto-bd/pagina-inicio/imagenes-plnt/pl1.png" alt="texto planta de prueba">
+          <div class="product-txt">
+            <h3>Planta</h3>
+            <p class="precio">Nombre de la planta</p>
+            <a href="#" class="aprender-mas-btn" data-id="8">Leer mas</a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <section class="service">
+      <div class="service-1">
+      </div>
+    </section>
+
+    <!--Pie de pagina del inicio-->
+    <footer class="footer">
+      <div class="footer-content-container">
+        <div class="link">
+          <h3>Redes sociales</h3>
+          <ul>
+            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    
+  
+</body>
+</html>
