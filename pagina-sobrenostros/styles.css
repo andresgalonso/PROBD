@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+  }
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: url("/home/usuario/proyecto-bd/pagina-inicio/fondo.jpg") center / cover no-repeat;
+}
+.header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 0 10px;
+  
+  }
+  
+  .navbar{
+      display: flex;
+      padding: 22px 0;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: space-between;
+  
+  }
+  
+  .navbar .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 10px;
+  }
+  
+  .navbar .logo img {
+      width: 5.3rem;
+      border-radius: 50%;
+  }
+  
+  .navbar .logo h2 {
+      color : #fff;
+      font-size: 1.5rem;
+      font-weight: 550;
+  }
+  
+  .navbar .links {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+  }
+  
+  .navbar .links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+  }
+  
+  .navbar .links a:hover {
+      color: #274625;
+      transition: all 0.1s ease;
+  }
+
+  /*Estlos del area de contacto*/
+  
+  .text-blk {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 25px;
+  }
+  
+  .responsive-cell-block {
+    min-height: 75px;
+  }
+  
+  .responsive-container-block {
+    min-height: 75px;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    justify-content: space-evenly;
+  }
+  
+  .outer-container {
+    width: 97%;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .inner-container {
+    max-width: 1320px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-left: auto;
+  }
+  
+  .section-head-text {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 48px;
+    color: #274625;
+    margin: 0 0 10px 0;
+  }
+  
+  .section-subhead-text {
+    font-size: 25px;
+    color: rgb(16, 16, 16);
+    line-height: 35px;
+    max-width: 470px;
+    text-align: center;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 60px;
+    margin-left: 0px;
+  }
+  
+  .img-wrapper {
+    width: 100%;
+  }
+  
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .social-media-links {
+    width: 125px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .name {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgb(19, 19, 19);
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    margin-left: 0px;
+  }
+  
+  .position {
+    font-size: 25px;
+    font-weight: 575;
+    color: #274625;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+  }
+  
+  .team-img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .team-card-container {
+    width: 280px;
+    margin: 0 0 40px 0;
+  }
+  
+  @media (max-width: 500px) {
+    .outer-container {
+      padding: 10px 20px 10px 20px;
+    }
+  
+    .section-head-text {
+      text-align: center;
+    }
+  }
