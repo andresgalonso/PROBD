@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+  }
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: url("/home/usuario/proyecto-bd/pagina-inicio/fondo.jpg") center / cover no-repeat;
+}
+.header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 0 10px;
+  
+  }
+  
+  .navbar{
+      display: flex;
+      padding: 22px 0;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: space-between;
+  
+  }
+  
+  .navbar .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 10px;
+  }
+  
+  .navbar .logo img {
+      width: 5.3rem;
+      border-radius: 50%;
+  }
+  
+  .navbar .logo h2 {
+      color : #fff;
+      font-size: 1.5rem;
+      font-weight: 550;
+  }
+  
+  .navbar .links {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+  }
+  
+  .navbar .links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+  }
+  
+  .navbar .links a:hover {
+      color: #274625;
+      transition: all 0.1s ease;
+  }
+
+  /*Seccion del footer*/
+.footer {
+    background-color:#ffffff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.footer p{
+    color: #171717;
+    font-size: 15px;
+    font-weight: 550px;
+    margin-bottom: 10px;
+}
+
+/*Seccion de perfil de la planta*/
+
+.plant-info {
+    display: flex;
+    width: 98%;
+    align-items: flex-start;
+    gap: 30px; /* Espacio entre imagen e info */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-left: 17px;
+    padding-right: 40px;
+    padding-top: 25px;
+    box-shadow: 5px 5px 5px 4px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .plant-image {
+    background-color: #fff;
+    width: 400px; /* Tamaño fijo para la imagen, puedes ajustar */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-left: 30px;
+  }
+  
+  .plant-info .plant-description p {
+    color: black ;
+    text-align: justify;
+    font-size: large;
+  }
+
+  .plant-description h1,
+  .plant-description strong,
+  .plant-description h4 {
+    color: #274625; /* Verde oscuro */
+  }
+  
+  .plant-description p {
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+
+
+/* Sección de comentarios general */
+.comments-section {
+    margin-top: 40px;
+    width: 98%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 5px 5px 5px 4px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 40px;
+    border-radius: 15px;
+    margin-left: 17px;
+  }
+  
+  /* Título */
+  .comments-section h2 {
+    color: #274625;
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-bottom: 2px solid #274625;
+    padding-bottom: 8px;
+    
+  }
+  
+  /* Formulario de comentario */
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  
+  .comment-form input,
+  .comment-form textarea {
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 1px solid #274625;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .comment-form input:focus,
+  .comment-form textarea:focus {
+    border-color: #274625;
+    outline: none;
+  }
+  
+  /* Botón */
+  #commentBtn {
+    align-self: flex-start;
+    background-color: #274625;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #commentBtn:hover {
+    background-color: #192c17;
+  }
+  
+  /* Lista de comentarios */
+  .comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* Cada comentario */
+  .comment {
+    background-color: white;
+    border-left: 4px solid #1a1b1a;
+    padding: 10px 14px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+  
+  .comment strong {
+    color: #1a1b1a;
+    font-size: 15px;
+  }
+  
+  .comment p {
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  
+  
