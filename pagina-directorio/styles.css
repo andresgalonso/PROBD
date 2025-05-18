@@ -1,0 +1,187 @@
+/* Estilos de las tipografías generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  body {
+      width: 100%;
+      height: 100vh;
+      background: url("/home/usuario/proyecto-bd/pagina-inicio/fondo.jpg") center / cover no-repeat;
+  }
+  
+  .header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 0 10px;
+  
+  }
+  
+  .navbar{
+      display: flex;
+      padding: 22px 0;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: space-between;
+  
+  }
+  
+  .navbar .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 10px;
+  }
+  
+  .navbar .logo img {
+      width: 5.3rem;
+      border-radius: 50%;
+  }
+  
+  .navbar .logo h2 {
+      color : #fff;
+      font-size: 1.5rem;
+      font-weight: 550;
+  }
+  
+  .navbar .links {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+  }
+  
+  .navbar .links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+  }
+  
+  .navbar .links a:hover {
+      color: #274625;
+      transition: all 0.1s ease;
+  }
+
+/* Estilo de las listas */
+
+.directorio{
+    padding: 40px;
+    padding-top: 20px;
+    width: 95%;
+    margin-left: 40px;
+    color: #274625;
+    font-size: 25px;
+    background-color: #fff;
+    text-align: center; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.directorio .opciones  i {
+    color: #274625;
+    gap: 20px; 
+}
+
+.directorio p {
+    color: black;
+    font-size: 17px;
+    font-weight: 500; 
+}
+
+.directorio .opciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* Estilo de los botones de la listas */
+
+.opciones {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .opcion {
+    background-color: #ffffff;
+    border: 2px solid #274625;
+    border-radius: 15px;
+    padding: 30px;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    color: #274625;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    margin-bottom:  60px;
+  }
+  
+  .opcion i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .opcion span {
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+  
+  .opcion:hover {
+    background-color: #274625;
+    transform: translateY(-5px);
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .opcion:hover i {
+    color: #fff;
+  }
+
+.lista-oculta {
+
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #274625;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .lista-oculta ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .lista-oculta li:first-child {
+    margin-top: 10px; /* Espacio en la primera opción */
+    }
+  .lista-oculta li {
+    margin: 8px 0;
+    
+  }
+  
+  .lista-oculta a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 550;
+    transition: color 0.3s ease;
+  }
+  
+  .lista-oculta a:hover {
+    color: #6c9b5f;
+  }
+  

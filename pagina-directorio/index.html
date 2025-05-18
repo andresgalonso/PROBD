@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagina-directorio</title>
+
+     <!-- Links de estilos externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Hoja de js externa -->
+  <script src="script.js" defer></script>
+  <!-- Hoja de estilos externa -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <!-- Barra de navegación  -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <img src="/home/usuario/proyecto-bd/pagina-inicio/logo.png" alt="logo de la pagina">
+        <h2>Plantados</h2>
+      </a>
+      <ul class="links">
+        <li><a href="/home/usuario/proyecto-bd/pagina-inicio/index.html">Inicio</a></li>
+        <li><a href="#">Plantas</a></li>
+        <li><a href="/home/usuario/proyecto-bd/pagina-sobrenostros/index.html">Sobre Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Contenido principal del directorio -->
+  <main class="directorio">
+    <h1>Directorio de plantas</h1>
+    <p>Selecciona una categoría para explorar información detallada:</p>
+  
+    <div class="opciones">
+      <div class="opcion" onclick="toggleLista('plantas-lista')">
+        <i class="fa-solid fa-seedling"></i>
+        <span>Plantas</span>
+      </div>
+      <div class="opcion" onclick="toggleLista('flores-lista')">
+        <i class="fa-solid fa-spa"></i>
+        <span>Flores</span>
+      </div>
+    </div>
+  
+    <!-- Lista de plantas -->
+    <div id="plantas-lista" class="lista-oculta">
+      <ul>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-albahaca/index.html">Albahaca</a></li>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-caletarosa/index.html">Caleta rosa</a></li>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-hidravariegata/index.html">Hidra variegata</a></li>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-julieta/index.html">Julieta</a></li>
+      </ul>
+    </div>
+  
+    <!-- Lista de flores -->
+    <div id="flores-lista" class="lista-oculta">
+      <ul>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-peonia/index.html">Dalia</a></li>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-geranio/index.html">Geranio</a></li>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-gerbera/index.html">Gerbera</a></li>
+        <li><a href="/home/usuario/proyecto-bd/paginas-perfiles/pagina-peonia/index.html">Peonia</a></li>
+      </ul>
+    </div>
+  </main>
+    
+</body>
+</html>
