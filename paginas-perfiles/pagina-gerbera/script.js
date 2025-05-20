@@ -2,7 +2,7 @@ const planta = {
     nombre: "Gerbera",
     nombre_cientifico: "Gerbera jamesonii",
     descripcion: "La gerbera es una planta ornamental muy llamativa, conocida por sus grandes flores parecidas a las margaritas. Pertenece a la familia Asteraceae y sus flores pueden encontrarse en una amplia variedad de colores como rosa, rojo, naranja, amarillo y blanco. Su tallo es largo y sin hojas, mientras que el follaje en la base es verde y alargado",
-    imagen_url: "/home/usuario/proyecto-bd/fotos/flores/Gerbera.png", // Cambia esta ruta según la estructura de tu proyecto
+    imagen_url: "../../fotos/flores/Gerbera.png", // Cambia esta ruta según la estructura de tu proyecto
     cuidados: "La gerbera necesita mucha luz, preferiblemente sol directo por unas horas al día, pero también puede crecer en semisombra. El riego debe ser regular, manteniendo el suelo ligeramente húmedo pero sin encharcar, ya que el exceso de agua puede provocar hongos en las raíces. El sustrato debe ser ligero y bien drenado. "
   };
   

@@ -2,7 +2,7 @@ const planta = {
     nombre: "Calatea Rosa",
     nombre_cientifico: "Calathea roseopicta",
     descripcion: "Es una planta tropical muy apreciada por su atractivo follaje. Sus hojas son grandes, ovaladas y muestran un hermoso contraste entre el verde oscuro del fondo y los patrones rosados o lilas que parecen estar “pintados” sobre ellas. El reverso de las hojas suele ser púrpura, lo que la hace aún más decorativa.",
-    imagen_url: "/home/usuario/proyecto-bd/fotos/plantas/Calatea rosa.png", // Cambia esta ruta según la estructura de tu proyecto
+    imagen_url: "../../fotos/plantas/Calatea rosa.png", // Cambia esta ruta según la estructura de tu proyecto
     cuidados: "Debe colocarse en un sitio con luz indirecta, ya que el sol directo puede dañar el color y la textura de las hojas. Se necesita un ambiente cálido y con buena humedad ambiental, evitando corrientes de aire. Es recomendable pulverizar las hojas con agua regularmente. El riego debe ser frecuente pero moderado, manteniendo el sustrato húmedo sin encharcar. Lo mejor es usar agua sin cal para evitar manchas."
   };
   
