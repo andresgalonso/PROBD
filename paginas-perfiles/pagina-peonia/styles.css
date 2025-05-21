@@ -215,4 +215,25 @@ body {
     line-height: 1.4;
   }
   
+  /*boto de favortios*/
+  .favorite-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #274625;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .favorite-btn:hover {
+    background-color: #192c17;
+  }
+  
+  .favorite-btn i {
+    margin-right: 8px;
+    color: white;
+  }
   
