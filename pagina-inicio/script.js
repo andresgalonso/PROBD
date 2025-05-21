@@ -51,3 +51,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
   
+  //logica de pruba del inicio sesion como admin que reedirige a la pagina de admin
+  document.querySelector('.form-box.login form').addEventListener('submit', function(e) {
+    e.preventDefault();
+  
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+  
+    const adminEmail = "admin@plantados.com";
+    const adminPassword = "admin123";
+  
+    if (email === adminEmail && password === adminPassword) {
+      sessionStorage.setItem('role', 'admin');
+      alert('Bienvenido administrador...');
+      window.location.href = '../pagina-admin/index.html';
+    } else {
+      sessionStorage.setItem('role', 'user');
+      alert('Bienvenido usuario...');
+      window.location.href = '../pagina-inicio/index.html';
+    }
+  });
+  
+  

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagina-perfil</title>
+    <!-- Links de estilos externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Hoja de js externa -->
+  <script src="script.js" defer></script>
+  <!-- Hoja de estilos externa -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Contenido del login  -->
+  <!-- Barra de navegación  -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <img src="../fotos/recursos/logo.png" alt="logo de la pagina">
+        <h2>Plantados</h2>
+      </a>
+      <ul class="links">
+        <li><a href="../pagina-inicio/index.html">Inicio</a></li>
+        <li><a href="../pagina-directorio/index.html">Plantas</a></li>
+        <li><a href="../pagina-sobrenostros/index.html">Sobre Nosotros</a></li>
+        <li><a href="../pagina-perfil/index.html">Tu perfil</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="directorio">
+    <h1>Perfil usuario</h1>
+    <p>Información de su cuenta</p>
+
+    <div class="usuario-info">
+        <img id="foto-usuario" src="../fotos/recursos/icono.jpg" alt="Foto de perfil">
+        <div>
+            <p><strong>Nombre de usuario:</strong> <span id="nombre-usuario" class="rectangulo"></span></p>
+            <p><strong>Correo:</strong> <span id="correon" class="rectangulo"></span></p>
+            <p><strong>Region:</strong> <span id="region" class="rectangulo"></span></p>
+        </div>
+    </div>
+    <!-- Sección de plantas favoritas -->
+    <section class="favoritas">
+        <h2>Plantas favoritas</h2>
+          <!-- Las plantas favoritas se insertarán aquí dinámicamente -->
+        </div>
+      </section>
+  </main>
+</body>
+</html>
