@@ -177,6 +177,43 @@ body {
     transform: translateY(-120%);
 }
 
+/* Estilos del botón de region */
+  
+  .btn-region {
+    background-color: #274625;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    text-align: left;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid white; /* Borde blanco cuando está cerrado */
+    border-radius: 0 0 5px 5px;
+  }
+  
+  .dropdown.open {
+    max-height: 300px; /* suficiente para mostrar todas las opciones */
+  }
+  
+  .option {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .option:hover {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    overflow: visible;
+  }
+
 /* Estilos del form-box */
 
 .form-box a {
