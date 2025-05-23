@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+
   
   //logica de pruba del inicio sesion como admin que reedirige a la pagina de admin
   document.querySelector('.form-box.login form').addEventListener('submit', function(e) {
@@ -71,5 +73,50 @@ document.addEventListener('DOMContentLoaded', function () {
       window.location.href = '../pagina-inicio/index.html';
     }
   });
+
+  async function obtenerProductos() {
+  try {
+    const response = await fetch("http://127.0.0.1:5000/obtener_plantas");
+    
+    if (!response.ok) {
+      throw new Error("No se pudo obtener los productos");
+    }
+
+    const productos = await response.json();
+    return productos;
+
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+    return [];
+  }
+}
+
+async function renderizarProductos() {
+  const container = document.getElementById("productosContainer");
+  container.innerHTML = ""; // Limpiar contenido previo
+
+  const productos = await obtenerProductos(); // Obtener productos de la API
+  console.log("Productos obtenidos:", productos);
+
+  productos.forEach(producto => {
+    const divProduct = document.createElement("div");
+    divProduct.classList.add("product");
+
+    divProduct.innerHTML = `
+      <img src="${producto.imagen_url}" alt="Imagen de ${producto.nombre}">
+      <div class="product-txt">
+        <h3>${producto.nombre}</h3>
+        <p class="precio">${producto.nombre_cientifico}</p>
+        <a href="${producto.pagina_url}" class="aprender-mas-btn">Leer más</a>
+      </div>
+    `;
+
+    container.appendChild(divProduct);
+  });
+}
+
+// Ejecutar la función cuando la página cargue
+document.addEventListener("DOMContentLoaded", renderizarProductos);
+
   
   

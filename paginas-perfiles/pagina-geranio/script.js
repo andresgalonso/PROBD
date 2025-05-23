@@ -1,10 +1,26 @@
-const planta = {
-    nombre: "Geranio",
-    nombre_cientifico: "Geranium",
-    descripcion: "El geranio es una planta ornamental perteneciente al género Pelargonium, muy apreciada por sus flores coloridas y su aroma agradable. Sus flores pueden ser de varios colores, como rojo, rosa, blanco o púrpura, y sus hojas son verdes, lobuladas y a veces con bordes dentados. Es común verlo en jardines, balcones y macetas, ya que se adapta bien a diferentes entornos y aporta un toque decorativo.",
-    imagen_url: "../../fotos/flores/Geranio.png", // Cambia esta ruta según la estructura de tu proyecto
-    cuidados: "El geranio necesita estar en un lugar con buena exposición al sol para florecer adecuadamente. Requiere riegos moderados, permitiendo que el sustrato se seque ligeramente entre riegos, ya que no tolera el exceso de agua. El suelo debe tener buen drenaje para evitar la pudrición de las raíces. Se recomienda podar las flores marchitas para estimular nuevas floraciones y aplicar fertilizante cada dos o tres semanas durante la primavera y el verano. "
-  };
+async function cargarPlanta(id) {
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/obtener_planta?id=${id}`);
+    
+    if (!response.ok) {
+      throw new Error("No se pudo obtener la planta");
+    }
+
+    const data = await response.json();
+
+    return {
+      nombre: data.nombre,
+      nombre_cientifico: data.nombre_cientifico,
+      descripcion: data.descripcion,
+      cuidados: data.cuidados,
+      imagen_url: data.imagen_url
+    };
+
+
+  } catch (error) {
+    console.error("Error al cargar la planta:", error);
+  }
+}
   
   function renderComments() {
     const commentsContainer = document.getElementById("commentsList");
@@ -39,17 +55,28 @@ const planta = {
     }
   }
   
-  document.addEventListener("DOMContentLoaded", () => {
-    // Mostrar datos de la planta
-    document.getElementById("plantName").textContent = planta.nombre;
-    document.getElementById("scientificName").textContent = planta.nombre_cientifico;
-    document.getElementById("plantDescription").textContent = planta.descripcion;
-    document.getElementById("plantImage").src = planta.imagen_url;
-    document.getElementById("plantImage").alt = planta.nombre;
-    document.getElementById("plantCare").textContent = planta.cuidados;
-  
+  document.addEventListener("DOMContentLoaded", async () => {
+    console.log("Script cargado. Iniciando petición...");
+    
+  try {
+    console.log("Iniciando solicitud a la API...");
+    const planta = await cargarPlanta("3002");
+    console.log("Planta obtenida:", planta);
+
+    if (planta) {
+      document.getElementById("plantName").textContent = planta.nombre;
+      document.getElementById("scientificName").textContent = planta.nombre_cientifico;
+      document.getElementById("plantDescription").textContent = planta.descripcion;
+      document.getElementById("plantImage").src = planta.imagen_url;
+      document.getElementById("plantImage").alt = planta.nombre;
+      document.getElementById("plantCare").textContent = planta.cuidados;
+    }
+
     // Configurar comentarios
     document.getElementById("commentBtn").addEventListener("click", agregarComentario);
     renderComments();
-  });
-  
+
+    } catch (error) {
+    console.error("Error al cargar los datos de la planta:", error);
+  }
+});

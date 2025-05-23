@@ -60,7 +60,7 @@ async function cargarPlanta(id) {
     
   try {
     console.log("Iniciando solicitud a la API...");
-    const planta = await cargarPlanta("3001");
+    const planta = await cargarPlanta("3006");
     console.log("Planta obtenida:", planta);
 
     if (planta) {

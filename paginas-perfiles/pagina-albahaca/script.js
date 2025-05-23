@@ -1,10 +1,26 @@
-const planta = {
-    nombre: "Albahaca",
-    nombre_cientifico: "Ocimum basilicum",
-    descripcion: "La albahaca es una planta aromática muy apreciada en la cocina por su fragancia y sabor. Pertenece a la familia de las Lamiáceas y se caracteriza por sus hojas verdes, ovaladas y suaves, que desprenden un aroma intenso. Puede producir pequeñas flores blancas o lilas, y su altura varía entre 30 y 60 centímetros",
-    imagen_url: "../../fotos/plantas/Albahaca.png", // Cambia esta ruta según la estructura de tu proyecto
-    cuidados: "Necesita estar en un lugar soleado, recibiendo al menos 4 a 6 horas de luz directa al día. El riego debe ser frecuente pero moderado, manteniendo el sustrato húmedo sin encharcar. Es importante plantarla en un suelo fértil, bien drenado y aireado. No tolera bien las temperaturas bajas, por lo que debe protegerse del frío."
-  };
+async function cargarPlanta(id) {
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/obtener_planta?id=${id}`);
+    
+    if (!response.ok) {
+      throw new Error("No se pudo obtener la planta");
+    }
+
+    const data = await response.json();
+
+    return {
+      nombre: data.nombre,
+      nombre_cientifico: data.nombre_cientifico,
+      descripcion: data.descripcion,
+      cuidados: data.cuidados,
+      imagen_url: data.imagen_url
+    };
+
+
+  } catch (error) {
+    console.error("Error al cargar la planta:", error);
+  }
+}
   
   function renderComments() {
     const commentsContainer = document.getElementById("commentsList");
@@ -39,17 +55,28 @@ const planta = {
     }
   }
   
-  document.addEventListener("DOMContentLoaded", () => {
-    // Mostrar datos de la planta
-    document.getElementById("plantName").textContent = planta.nombre;
-    document.getElementById("scientificName").textContent = planta.nombre_cientifico;
-    document.getElementById("plantDescription").textContent = planta.descripcion;
-    document.getElementById("plantImage").src = planta.imagen_url;
-    document.getElementById("plantImage").alt = planta.nombre;
-    document.getElementById("plantCare").textContent = planta.cuidados;
-  
+  document.addEventListener("DOMContentLoaded", async () => {
+    console.log("Script cargado. Iniciando petición...");
+    
+  try {
+    console.log("Iniciando solicitud a la API...");
+    const planta = await cargarPlanta("3005");
+    console.log("Planta obtenida:", planta);
+
+    if (planta) {
+      document.getElementById("plantName").textContent = planta.nombre;
+      document.getElementById("scientificName").textContent = planta.nombre_cientifico;
+      document.getElementById("plantDescription").textContent = planta.descripcion;
+      document.getElementById("plantImage").src = planta.imagen_url;
+      document.getElementById("plantImage").alt = planta.nombre;
+      document.getElementById("plantCare").textContent = planta.cuidados;
+    }
+
     // Configurar comentarios
     document.getElementById("commentBtn").addEventListener("click", agregarComentario);
     renderComments();
-  });
-  
+
+    } catch (error) {
+    console.error("Error al cargar los datos de la planta:", error);
+  }
+});
