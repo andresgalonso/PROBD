@@ -51,27 +51,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  //Boton de inicio de sesion
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginBtn = document.querySelector(".login-btn"); // Seleccionar el botón
+    const idUsuario = sessionStorage.getItem("id_usuario"); // Obtener el ID del usuario
 
-  
-  //logica de pruba del inicio sesion como admin que reedirige a la pagina de admin
-  document.querySelector('.form-box.login form').addEventListener('submit', function(e) {
-    e.preventDefault();
+    if (idUsuario) {
+        loginBtn.style.display = "none"; // Ocultar el botón si el usuario inició sesión
+    }
+});
+
+  //logica de pruba del inicio sesion 
+  document.querySelector('.form-box.login form').addEventListener('submit', async (event) =>{
+    event.preventDefault();
   
     const email = document.getElementById('login-email').value.trim();
     const password = document.getElementById('login-password').value.trim();
-  
-    const adminEmail = "admin@plantados.com";
-    const adminPassword = "admin123";
-  
-    if (email === adminEmail && password === adminPassword) {
-      sessionStorage.setItem('role', 'admin');
-      alert('Bienvenido administrador...');
-      window.location.href = '../pagina-admin/index.html';
-    } else {
-      sessionStorage.setItem('role', 'user');
-      alert('Bienvenido usuario...');
-      window.location.href = '../pagina-inicio/index.html';
+
+    const usuario = { email, password };
+
+  try {
+    const response = await fetch("http://127.0.0.1:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(usuario)
+    });
+
+    const resultado = await response.json();
+
+    if (response.status === 401) {
+            alert("Contraseña incorrecta, intenta de nuevo.");
+            return;
+        }
+    if (response.status === 404) {
+        alert("Usuario no encontrado. ¿Registraste tu cuenta?");
+        return;
     }
+    if (!response.ok) throw new Error("Error en el inicio de sesión");
+
+    if (resultado.id_usuario) {
+            sessionStorage.setItem("id_usuario", resultado.id_usuario);
+            window.location.reload(); 
+        } 
+    else {
+        alert("Error: No se recibió el ID de usuario.");
+    }
+    
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un problema en el inicio de sesion.");
+  } 
   });
 
   async function obtenerProductos() {
@@ -114,6 +146,46 @@ async function renderizarProductos() {
     container.appendChild(divProduct);
   });
 }
+
+document.querySelectorAll(".option").forEach(option => {
+  option.addEventListener("click", () => {
+    const regionId = option.getAttribute("data-value"); // Obtener el ID de la región
+    document.getElementById("region-value").value = regionId; // Guardarlo en el input oculto
+  });
+});
+
+document.getElementById("registro-form").addEventListener("submit", async (event) => {
+  event.preventDefault(); // Evitar recargar la página
+
+  const nombre = document.getElementById("signup-name").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+  const regionId = document.getElementById("region-value").value;
+
+  const datosUsuario = { nombre, email, password, region_id: regionId };
+
+  try {
+    const response = await fetch("http://127.0.0.1:5000/registro", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(datosUsuario)
+    });
+
+    if (!response.ok) throw new Error("Error en el registro");
+
+    const resultado = await response.json();
+    alert("¡Cuenta creada con éxito!");
+    console.log("Registro exitoso:", resultado);
+    window.location.reload(); 
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un problema en el registro.");
+  }
+});
+
 
 // Ejecutar la función cuando la página cargue
 document.addEventListener("DOMContentLoaded", renderizarProductos);
