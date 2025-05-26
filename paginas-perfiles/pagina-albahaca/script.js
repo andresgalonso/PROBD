@@ -55,10 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const comentarioForm = document.getElementById("commentForm");
     const idUsuario = sessionStorage.getItem("id_usuario"); 
 
-    if (!idUsuario) {
-        comentarioForm.style.display = "none"; 
-    }
-
     document.getElementById("commentBtn").addEventListener("click", () => {
         agregarComentario(3005); 
     });
@@ -98,6 +94,48 @@ async function agregarComentario(idPlanta) {
         if (response.ok) {
             window.location.reload();
             document.getElementById("comment").value = ""; 
+        } else {
+            alert(`Error: ${resultado.error || "No se pudo registrar el comentario"}`);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const idUsuario = sessionStorage.getItem("id_usuario"); 
+
+    document.getElementById("favoriteBtn").addEventListener("click", () => {
+        agregarFavorito(3005); 
+    });
+});
+
+async function agregarFavorito(idPlanta) {
+    const idUsuario = sessionStorage.getItem("id_usuario");
+
+    if (!idUsuario) {
+        alert("Debes iniciar sesión para agregar un favorito");
+        return;
+    }
+
+    const favoritoData = {
+        id_planta: idPlanta,
+        id_usuario: idUsuario
+    };
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/agregar_favorito", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(favoritoData)
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok) {
+          alert("Agregado a favoritos")
         } else {
             alert(`Error: ${resultado.error || "No se pudo registrar el comentario"}`);
         }
