@@ -1,47 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pagina-admin</title><!-- Links de estilos externos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Hoja de js externa -->
-    <script src="script.js" defer></script>
-    <!-- Hoja de estilos externa -->
-    <link rel="stylesheet" href="styles.css">
-    <nav class="navbar">
-        <a href="#" class="logo">
-          <img src="../fotos/recursos/logo.png" alt="logo de la pagina">
-          <h2>Plantados</h2>
-        </a>
-        <ul class="links">
-          <li><a href="../pagina-inicio/index.html">Inicio</a></li>
-          <li><a href="../pagina-directorio/index.html">Plantas</a></li>
-          <li><a href="../pagina-sobrenostros/index.html">Sobre Nosotros</a></li>
-        </ul>
-        <button class="login-btn">Iniciar Sesión</button>
-      </nav>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pagina-admin</title>
+
+  <!-- Links de estilos externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Archivos externos -->
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main class="directorio">
-        <h1>Funciones de usuario</h1>
-        <p>Escoga una opción</p>
-      
-        <div class="opciones">
-          <div class="opcion">
-            <i class="fa-solid fa-xmark"></i>
-            <span>Eliminar planta</span>
+
+  <!-- Navegación -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">
+        <img src="../fotos/recursos/logo.png" alt="logo de la página">
+        <h2>Plantados</h2>
+      </a>
+      <ul class="links">
+        <li><a href="../pagina-inicio/index.html">Inicio</a></li>
+        <li><a href="../pagina-directorio/index.html">Plantas</a></li>
+        <li><a href="../pagina-sobrenostros/index.html">Sobre Nosotros</a></li>
+        <li><a href="../pagina-admin/index.html">Panel de control</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="directorio">
+    <h1>Funciones de usuario</h1>
+    <p>Escoja una opción</p>
+
+    <div class="opciones">
+      <div class="opcion-eliminar">
+        <i class="fa-solid fa-question"></i>
+        <span>Consultar informacion</span>
+      </div>
+      <div class="opcion-agregar">
+        <i class="fa-solid fa-check"></i>
+        <span>Agregar planta</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Ventana emergente para consultas -->
+  <div class="blur-bg-overlay" id="consultas-popup">
+    <div class="form-popup">
+      <span class="close-btn">&times;</span>
+
+      <div class="form-box consultas">
+        <div class="form-details">
+          <h2>Consultas y Estadísticas</h2>
+        </div>
+        <div class="form-content">
+          <!-- Sección de estadísticas generales -->
+          <div class="estadistica-container">
+            <div class="estadistica-card">
+              <i class="fas fa-leaf"></i>
+              <h3>Total de Plantas</h3>
+              <p class="contador" id="total-plantas">0</p>
+            </div>
+            
+            <div class="estadistica-card">
+              <i class="fas fa-users"></i>
+              <h3>Total de Usuarios</h3>
+              <p class="contador" id="total-usuarios">0</p>
+            </div>
           </div>
-          <div class="opcion"">
-            <i class="fa-solid fa-check"></i>
-            <span>Agregar planta</span>
+
+          <!-- Sección de consultas por región -->
+          <div class="consulta-section">
+            <h3><i class="fas fa-map-marker-alt"></i> Usuarios por Región</h3>
+            <div class="selector-region">
+              <select id="selector-region" class="input-field">
+                <option value="">Seleccione una región</option>
+                <option value="norte">America del norte</option>
+                <option value="centro">America del sur</option>
+                <option value="sur">Africa</option>
+                <option value="este">Asia</option>
+                <option value="oeste">Europa</option>
+                <option value="oeste">Oceania</option>
+              </select>
+              <div class="resultado-region" id="resultado-region">
+                Seleccione una región para ver resultados
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección de plantas por estación -->
+          <div class="consulta-section">
+            <h3><i class="fas fa-calendar-alt"></i> Plantas por Estación</h3>
+            <div class="estaciones-grid">
+              <div class="estacion-card" data-estacion="primavera">
+                <h4>Primavera</h4>
+                <p class="contador" id="plantas-primavera">0</p>
+              </div>
+              <div class="estacion-card" data-estacion="verano">
+                <h4>Verano</h4>
+                <p class="contador" id="plantas-verano">0</p>
+              </div>
+              <div class="estacion-card" data-estacion="otono">
+                <h4>Otoño</h4>
+                <p class="contador" id="plantas-otono">0</p>
+              </div>
+              <div class="estacion-card" data-estacion="invierno">
+                <h4>Invierno</h4>
+                <p class="contador" id="plantas-invierno">0</p>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
-      
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventana emergente para agregar -->
+  <div class="blur-bg-overlay" id="add-popup">
+    <div class="form-popup">
+      <span class="close-btn">&times;</span>
+      <div class="form-box signup">
+        <div class="form-details">
+          <h2>Agregar nueva planta</h2>
+          <p>Por favor complete todos los campos</p>
+        </div>
+        <div class="form-content">
+          <form action="#">
+            <div class="input-field">
+              <input type="text" id="ad-name" placeholder="Nombre de la planta" required>
+              <label for="ad-name"></label>
+            </div>
+            <div class="input-field">
+              <input type="text" id="ad-desc" placeholder="Descripción de la planta" required>
+              <label for="ad-desc"></label>
+            </div>
+            <div class="input-field">
+              <input type="text" id="ad-care" placeholder="Cuidados de la planta" required>
+              <label for="ad-care"></label>
+            </div>
+            <div class="input-field">
+              <input type="text" id="ad-season" placeholder="Estación de la planta" required>
+              <label for="ad-season"></label>
+            </div>
+            <div class="input-field">
+              <div class="file-input-container">
+                <input type="file" id="ad-plant-image" class="hidden-file-input" required>
+                <button type="button" class="custom-button">Seleccionar archivo</button>
+                <span class="custom-text">Ningún archivo seleccionado</span>
+              </div>
+              <label for="ad-plant-image"></label>
+            </div>
+            <button class="btn" type="submit">Agregar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

@@ -61,17 +61,30 @@ def registro():
 @app.route("/login", methods=["POST"])
 def login():
     datos = request.json
+    print(f"Intentando login con email: '{datos.get('email')}', password: '{datos.get('password')}'")
+
     email = datos["email"]
     password = datos["password"]
+
+    # 👇 Limpieza y normalización
+    print("Email original recibido:", repr(email))
+    email = email.strip().lower()
+    print("Email después de limpiar y pasar a minúsculas:", repr(email))
 
     resultado = verificar_usuario(email, password)
 
     if resultado is False:
         return jsonify({"mensaje": "Contraseña incorrecta"}), 401
-    elif isinstance(resultado, int):  
-        return jsonify({"mensaje": "Inicio de sesión exitoso", "id_usuario": resultado}), 200
-    else:
+    elif resultado is None:
         return jsonify({"mensaje": "Usuario no encontrado"}), 404
+    else:
+        id_usuario, es_admin = resultado
+        return jsonify({
+            "mensaje": "Inicio de sesión exitoso",
+            "id_usuario": id_usuario,
+            "es_admin": es_admin
+        }), 200
+
 
 @app.route("/obtener_comentarios", methods=["GET"])
 def comentarios():

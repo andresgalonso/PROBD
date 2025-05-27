@@ -126,7 +126,7 @@
     flex-wrap: wrap;
   }
   
-  .opcion {
+  .opcion-eliminar ,.opcion-agregar {
     background-color: #ffffff;
     border: 2px solid #274625;
     border-radius: 15px;
@@ -140,24 +140,326 @@
     margin-bottom:  60px;
   }
   
-  .opcion i {
+  .opcion-eliminar i,
+  .opcion-agregar i {
     font-size: 2.5rem;
     margin-bottom: 10px;
     display: block;
   }
   
-  .opcion span {
+  .opcion-eliminar span ,
+  .opcion-agregar span {
     font-weight: 600;
     font-size: 1.2rem;
   }
   
-  .opcion:hover {
+  .opcion-eliminar:hover,
+  .opcion-agregar:hover {
     background-color: #274625;
     transform: translateY(-5px);
     cursor: pointer;
     color: #fff;
   }
 
-  .opcion:hover i {
+  .opcion-eliminar:hover i,
+  .opcion-agregar:hover i {
     color: #fff;
   }
+
+
+  /*esilos de las ventanas de eliminar y agregar*/
+.blur-bg-overlay {
+    display: none;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.blur-bg-overlay.active {
+  pointer-events: auto;
+  display: block;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+}
+
+.form-popup {
+    display: none;
+    opacity: 0;
+    position: fixed;
+    z-index: 1001;
+    top: 50%;
+    left: 50%;
+    max-width: 720px;
+    max-height: 90vh;
+    width: 100%;
+    background: #fff;
+    border: 2px solid #fff;
+    transform: translate(-50%, -100%);
+    border-radius: 7px;
+    padding: 0 15px;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.form-popup.active {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+
+}
+
+.form-box .form-details {
+  max-width: 330px;
+  width: 100%;
+  margin: 0 auto; /* Centra horizontalmente */
+  padding: 20px; /* Añade espacio interno */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra elementos hijos */
+  justify-content: center;
+  text-align: center;
+  color: #142413;
+  background-size: cover;
+  background-position: center;
+}
+.form-box .form-details p{
+  font-size: large;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-box .form-details h2 {
+  color: #1a3019;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: x-large;
+}
+
+.form-box .form-details h3 {
+  color: black;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: medium;
+}
+
+.form-box .form-content{
+  padding: 25px;
+  width: auto;
+}
+
+.input-field{
+  height: auto;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+
+.input-field input {
+  width: 100%;
+  height: 60px;
+  outline: none;
+  padding: 0 20px;    
+  font-size: 1.1rem;
+  border-radius: 3px;
+  border: 1px solid #686868;
+}
+
+.input-field input:focus {
+  border-color: #142413;
+  transition: border 0.2s ease;
+}
+.input-field input:is(:focus, :valid) {
+  border-color: #274625;
+  padding: 16px 15px 0;
+  transition: border-color 0.3s ease;
+}
+
+.input-field label{
+  position: absolute;
+  top: 50%;
+  color: #686868;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: 0.1s ease;
+}
+
+.input-field input:is(:focus, :valid) ~ label {
+  color: #274625;
+  font-size: 0.75rem;
+  transform: translateY(-120%);
+}
+
+/* Estilos del form-box */
+
+.form-box a {
+  color:#142413;
+  text-decoration: none;
+}
+
+.form-box a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos del boton de cerrar del registro */
+.form-popup .close-btn {  /* Elimina el espacio antes del punto */
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #274625;
+}
+
+/* Estilos del boton de eliminar agregar */
+/* CSS */
+/* Estilo base para los botones */
+.form-box .form-content .btn {
+  background-color: #274625;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto;
+  display: block; /* Para centrar con margin auto */
+}
+
+.form-box .form-content .btn:hover {
+  background-color: #1a3019;
+}
+
+/* Oculta el input file original */
+.hidden-file-input {
+  display: none;
+}
+
+.custom-button {
+  padding: 8px 16px;
+  background-color: #274625;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.custom-button:hover {
+  background-color: #142413;
+}
+
+.custom-text {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Estilos para el panel de consultas */
+.form-box.consultas {
+  max-width: 800px;
+}
+
+.estadistica-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.estadistica-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.estadistica-card:hover {
+  transform: translateY(-5px);
+}
+
+.estadistica-card i {
+  font-size: 2rem;
+  color: #274625;
+  margin-bottom: 10px;
+}
+
+.estadistica-card h3 {
+  color: #1a3019;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.contador {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #274625;
+}
+
+.consulta-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.consulta-section h3 {
+  color: #1a3019;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.selector-region {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selector-region select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.resultado-region {
+  padding: 15px;
+  background: white;
+  border-radius: 5px;
+  min-height: 50px;
+  border: 1px dashed #274625;
+}
+
+.estaciones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.estacion-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.estacion-card h4 {
+  color: #1a3019;
+  margin-bottom: 10px;
+}
+

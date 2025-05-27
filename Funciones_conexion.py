@@ -1,4 +1,5 @@
 import oracledb
+import sqlite3
 
 usuario = "superusuario"
 clave = "superusuario"
@@ -68,28 +69,52 @@ def informacion_usuario(x):
     return fila
     
 
+def listar_emails():
+    conn = conexion()
+    cur = conn.cursor()
+
+    cur.execute("SELECT email_usuario FROM usuarios")
+    filas = cur.fetchall()
+
+    for fila in filas:
+        print(f"Email en DB: {repr(fila[0])}")
+
+    cur.close()
+    conn.close()
+
+# Ejecuta esto para ver los emails
+listar_emails()
 
 def verificar_usuario(email, password):
     conn = conexion()  
     cur = conn.cursor()
 
-    
-    cur.execute("SELECT id_usuario, contraseña_usuario FROM USUARIOS WHERE email_usuario = :1", [email])
+    email_limpio = email.strip().lower()
+    print(f"Buscando email: '{email_limpio}' en la base...")
 
+    sql = "SELECT id_usuario, contraseña_usuario, es_admin FROM usuarios WHERE LOWER(TRIM(email_usuario)) = :1"
+    cur.execute(sql, [email_limpio])
     resultado = cur.fetchone()  
+    print(f"Resultado consulta: {resultado}")
 
     cur.close()
     conn.close()
 
     if resultado:
-        id_usuario = resultado [0]
+        id_usuario = resultado[0]
         contraseña_bd = resultado[1]
+        es_admin = resultado[2]
+
+        es_admin = es_admin.strip() if isinstance(es_admin, str) else es_admin
+
         if contraseña_bd == password:
-            return id_usuario
+            return (id_usuario, es_admin)
         else:
             return False  
     else:
-        return None  
+        return None
+
+
 
 def obtener_comentarios(x):
     conn=conexion()

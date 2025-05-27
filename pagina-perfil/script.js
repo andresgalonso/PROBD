@@ -53,7 +53,7 @@ async function renderizarProductos() {
 
   productos.forEach(producto => {
     const divProduct = document.createElement("div");
-    divProduct.classList.add("product");
+    divProduct.classList.add("product-item");
 
     divProduct.innerHTML = `
       <img src="${producto.imagen_url}" alt="Imagen de ${producto.nombre}">
