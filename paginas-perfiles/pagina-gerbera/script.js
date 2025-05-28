@@ -27,42 +27,49 @@ function renderComments() {
   commentsContainer.innerHTML = "";
 
   fetch("http://localhost:5000/obtener_comentarios?id=3003") 
-      .then(response => response.json()) 
-      .then(comments => {
-          comments.forEach(comentario => {
-              const div = document.createElement("div");
-            div.classList.add("comment");
-            div.setAttribute("data-id", comentario.id_comentario);
+    .then(response => response.json()) 
+    .then(comments => {
+      comments.forEach(comentario => {
+        const div = document.createElement("div");
+        div.classList.add("comment");
+        div.setAttribute("data-id", comentario.id_comentario);
 
-            div.innerHTML = `
-                <strong>${comentario.usuario}</strong>
-                <p>${comentario.descripcion}</p>
-            `;
+        div.innerHTML = `
+          <strong>${comentario.usuario}</strong>
+          <p>${comentario.descripcion}</p>
+        `;
 
-            const replyButton = document.createElement("button");
-            replyButton.classList.add("reply-btn");
+        const replyButton = document.createElement("button");
+        replyButton.classList.add("reply-btn");
+        replyButton.textContent = "";
 
-            replyButton.addEventListener("click", () => {
-                mostrarCajaRespuesta(comentario.id_comentario);
+        replyButton.addEventListener("click", () => {
+          mostrarCajaRespuesta(comentario.id_comentario);
+        });
+
+        div.appendChild(replyButton);
+
+        const respuestasContainer = document.createElement("div");
+        respuestasContainer.classList.add("responses");
+        div.appendChild(respuestasContainer);
+
+        commentsContainer.appendChild(div);
+
+        fetch(`http://localhost:5000/obtener_respuestas?id=${comentario.id_comentario}`) 
+          .then(response => response.json()) 
+          .then(respuestas => {
+            respuestas.forEach(respuesta => {
+              const respuestaDiv = document.createElement("div");
+              respuestaDiv.classList.add("response");
+              respuestaDiv.innerHTML = `<strong>Respuesta de ${respuesta.usuario}</strong><p>${respuesta.descripcion}</p>`;
+              
+              respuestasContainer.appendChild(respuestaDiv); 
             });
-
-            div.appendChild(replyButton); // Agregar el botón al comentario
-            commentsContainer.appendChild(div);
-
-              fetch(`http://localhost:5000/obtener_respuestas?id=${comentario.id_comentario}`) 
-                  .then(response => response.json()) 
-                  .then(comments => {
-                    comments.forEach(comentario => {
-                        const div = document.createElement("div");
-                        div.classList.add("comment");
-                        div.innerHTML = `<strong>Respuesta de ${comentario.usuario}</strong><p>${comentario.descripcion}</p>`; 
-                        commentsContainer.appendChild(div);
-          });
-      })
-      .catch(error => console.error("Error al obtener comentarios:", error));
-          });
-      })
-      .catch(error => console.error("Error al obtener comentarios:", error));
+          })
+          .catch(error => console.error("Error al obtener respuestas:", error));
+      });
+    })
+    .catch(error => console.error("Error al obtener comentarios:", error));
 }
 
 function mostrarCajaRespuesta(idComentario) {
