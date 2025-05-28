@@ -31,9 +31,23 @@ async function cargarPlanta(id) {
       .then(comments => {
           comments.forEach(comentario => {
               const div = document.createElement("div");
-              div.classList.add("comment");
-              div.innerHTML = `<strong>${comentario.usuario}</strong><p>${comentario.descripcion}</p>`; 
-              commentsContainer.appendChild(div);
+            div.classList.add("comment");
+            div.setAttribute("data-id", comentario.id_comentario);
+
+            div.innerHTML = `
+                <strong>${comentario.usuario}</strong>
+                <p>${comentario.descripcion}</p>
+            `;
+
+            const replyButton = document.createElement("button");
+            replyButton.classList.add("reply-btn");
+
+            replyButton.addEventListener("click", () => {
+                mostrarCajaRespuesta(comentario.id_comentario);
+            });
+
+            div.appendChild(replyButton); // Agregar el botón al comentario
+            commentsContainer.appendChild(div);
 
               fetch(`http://localhost:5000/obtener_respuestas?id=${comentario.id_comentario}`) 
                   .then(response => response.json()) 
@@ -49,6 +63,28 @@ async function cargarPlanta(id) {
           });
       })
       .catch(error => console.error("Error al obtener comentarios:", error));
+}
+
+function mostrarCajaRespuesta(idComentario) {
+    const comentarioDiv = document.querySelector(`[data-id="${idComentario}"]`);
+
+    if (comentarioDiv.querySelector(".respuesta-form")) return;
+
+    const respuestaDiv = document.createElement("div");
+    respuestaDiv.classList.add("respuesta-form");
+
+    const textarea = document.createElement("textarea");
+    textarea.id = `respuesta-${idComentario}`;
+    textarea.placeholder = "Escribe tu respuesta...";
+
+    const enviarBtn = document.createElement("button");
+    enviarBtn.classList.add("enviar-btn");
+
+    enviarBtn.addEventListener("click", () => agregarRespuesta(idComentario));
+
+    respuestaDiv.appendChild(textarea);
+    respuestaDiv.appendChild(enviarBtn);
+    comentarioDiv.appendChild(respuestaDiv);
 }
   
 document.addEventListener("DOMContentLoaded", () => {
@@ -100,6 +136,49 @@ async function agregarComentario(idPlanta) {
             document.getElementById("comment").value = ""; 
         } else {
             alert(`Error: ${resultado.error || "No se pudo registrar el comentario"}`);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+async function agregarRespuesta(idComentario) {
+    const idUsuario = sessionStorage.getItem("id_usuario");
+    const descripcion = document.getElementById(`respuesta-${idComentario}`).value.trim();
+
+
+    if (!idUsuario) {
+        alert("Debes iniciar sesión para responder.");
+        return;
+    }
+
+    if (!descripcion) {
+        alert("Por favor, escribe una respuesta.");
+        return;
+    }
+
+    const respuestaData = {
+        id_comentario: idComentario,
+        id_usuario: idUsuario,
+        descripcion: descripcion
+    };
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/responder", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(respuestaData)
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok) {
+            window.location.reload();
+            document.getElementById("comment").value = ""; 
+        } else {
+            alert(`Error: ${resultado.error || "No se pudo registrar la respuesta"}`);
         }
     } catch (error) {
         console.error("Error:", error);

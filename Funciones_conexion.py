@@ -82,9 +82,6 @@ def listar_emails():
     cur.close()
     conn.close()
 
-# Ejecuta esto para ver los emails
-listar_emails()
-
 def verificar_usuario(email, password):
     conn = conexion()  
     cur = conn.cursor()
@@ -160,6 +157,26 @@ def registrar_comentario(x1, x2, x3):
             conn.rollback()  
         return f"Error al registrar comentario: {str(e)}"
     
+def registrar_respuesta(x1, x2, x3):
+    try:
+        conn = conexion()
+        cur = conn.cursor()
+
+        sql = """INSERT INTO RESPUESTAS (id_respuesta, id_comentario, id_usuario, fecha_respuesta, descripcion_respuesta) 
+                 VALUES (respuestas_seq.nextval, :1, :2, sysdate, :3)"""
+
+        cur.execute(sql, (x1, x2, x3))  
+
+        conn.commit()
+        cur.close()
+        conn.close()
+        return "Respuesta registrado exitosamente"
+
+    except Exception as e:
+        if conn:
+            conn.rollback()  
+        return f"Error al registrar respuesta: {str(e)}"
+    
 def registrar_favorito(x1, x2):
     try:
         conn = conexion()
@@ -192,6 +209,5 @@ def plantas_favoritas(x):
 
     return filas
 
-print(plantas_favoritas(1))
 
 

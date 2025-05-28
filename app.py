@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from Funciones_conexion import obtener_planta, obtener_plantas, registrar_usuario, verificar_usuario, obtener_comentarios, obtener_respuestas, registrar_comentario, informacion_usuario, registrar_favorito, plantas_favoritas
+from Funciones_conexion import obtener_planta, obtener_plantas, registrar_usuario, verificar_usuario, obtener_comentarios, obtener_respuestas, registrar_comentario, informacion_usuario, registrar_favorito, plantas_favoritas, registrar_respuesta
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -142,6 +142,25 @@ def comentar():
         descripcion = datos["descripcion"]
 
         registrar_comentario(id_planta, id_usuario, descripcion)  
+
+        return jsonify({"mensaje": "Registro de comentario exitoso"}), 200  
+    
+    except KeyError as e:
+        return jsonify({"error": f"Falta el campo: {str(e)}"}), 400  
+    
+    except Exception as e:
+        return jsonify({"error": "Error interno en el servidor", "detalle": str(e)}), 500
+    
+@app.route("/responder", methods=["POST"])
+def responder():
+    datos = request.json
+
+    try:
+        id_comentario = datos["id_comentario"]
+        id_usuario = datos["id_usuario"]
+        descripcion = datos["descripcion"]
+
+        registrar_respuesta(id_comentario, id_usuario, descripcion)  
 
         return jsonify({"mensaje": "Registro de comentario exitoso"}), 200  
     
