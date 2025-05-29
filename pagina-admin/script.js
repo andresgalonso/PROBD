@@ -1,23 +1,13 @@
 // ===== CÓDIGO PARA LOS POPUPS =====
-// Abrir popup de "Agregar"
-document.querySelector(".opcion-agregar").addEventListener("click", () => {
-    document.getElementById("add-popup").classList.add("active");
-    document.querySelector("#add-popup .form-popup").classList.add("active");
-});
 
-// Abrir popup de "Eliminar" (ahora será de Consultas)
+
+// Abrir popup de  Consultas
 document.querySelector(".opcion-eliminar").addEventListener("click", () => {
     document.getElementById("consultas-popup").classList.add("active");
     document.querySelector("#consultas-popup .form-popup").classList.add("active");
     cargarEstadisticas(); // Cargar datos cuando se abre
 });
 
-// Abrir popup de "Consultas" (si decides añadir un tercer botón)
-// document.querySelector(".opcion-consultas").addEventListener("click", () => {
-//     document.getElementById("consultas-popup").classList.add("active");
-//     document.querySelector("#consultas-popup .form-popup").classList.add("active");
-//     cargarEstadisticas();
-// });
 
 // Cerrar popups
 document.querySelectorAll(".close-btn").forEach(btn => {
@@ -38,51 +28,18 @@ document.querySelectorAll(".blur-bg-overlay").forEach(overlay => {
     });
 });
 
-// ===== ANIMACIÓN PARA INPUTS =====
-document.querySelectorAll(".input-field input").forEach(input => {
-    input.addEventListener("focus", () => {
-        input.parentNode.querySelector("label").classList.add("active");
-    });
-    input.addEventListener("blur", () => {
-        if (input.value === "") {
-            input.parentNode.querySelector("label").classList.remove("active");
-        }
-    });
-    
-    // Inicializar labels si hay valores precargados
-    if (input.value !== "") {
-        input.parentNode.querySelector("label").classList.add("active");
-    }
-});
 
-// ===== INPUT FILE PERSONALIZADO =====
-const fileInput = document.getElementById('ad-plant-image');
-const customButton = document.querySelector('.custom-button');
-const customText = document.querySelector('.custom-text');
-
-if (fileInput && customButton && customText) {
-    customButton.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    fileInput.addEventListener('change', () => {
-        if (fileInput.files.length > 0) {
-            customText.textContent = fileInput.files[0].name;
-        } else {
-            customText.textContent = 'Ningún archivo seleccionado';
-        }
-    });
-}
 
 // ===== FUNCIONES PARA CONSULTAS =====
-function cargarEstadisticas() {
-    // Datos de ejemplo - reemplazar con llamadas reales a tu API
-    actualizarContador('total-plantas', 127);
-    actualizarContador('total-usuarios', 58);
-    actualizarContador('plantas-primavera', 42);
-    actualizarContador('plantas-verano', 35);
-    actualizarContador('plantas-otono', 28);
-    actualizarContador('plantas-invierno', 22);
+async function cargarEstadisticas() {
+    const totales = await cargarTotales();
+    const regiones = await cargarRegiones();
+    actualizarContador('total-plantas', totales.plantas);
+    actualizarContador('total-usuarios', totales.usuarios);
+    actualizarContador('plantas-primavera', totales.primavera);
+    actualizarContador('plantas-verano', totales.verano);
+    actualizarContador('plantas-otono', totales.otoño);
+    actualizarContador('plantas-invierno', totales.invierno);
     
     // Configurar el selector de regiones
     const selectorRegion = document.getElementById('selector-region');
@@ -94,12 +51,12 @@ function cargarEstadisticas() {
             if (region) {
                 // Simulación de datos por región
                 const datosUsuariosPorRegion = {
-                    norte: 12,
-                    centro: 20,
-                    sur: 9,
-                    este: 7,
-                    oeste: 10,
-                    oceania: 20
+                    norte: regiones.AmericaNorte,
+                    centro: regiones.AmericaSur,
+                    sur: regiones.Africa,
+                    este: regiones.Asia,
+                    oeste: regiones.Europa,
+                    oceania: regiones.Oceania
                 };
                 
                 resultadoRegion.innerHTML = `
@@ -136,3 +93,83 @@ function actualizarContador(id, valorFinal) {
 document.addEventListener("DOMContentLoaded", function() {
     // Si hay algún elemento que necesite inicialización inmediata
 });
+
+async function cargarTotales() {
+  try {
+    const response1 = await fetch(`http://127.0.0.1:5000/cantidadUsuarios`);
+    const response2 = await fetch(`http://127.0.0.1:5000/cantidadPlantas`);
+    const response3 = await fetch(`http://127.0.0.1:5000/cantidadEstacion?id=2000`);
+    const response4 = await fetch(`http://127.0.0.1:5000/cantidadEstacion?id=2001`);
+    const response5 = await fetch(`http://127.0.0.1:5000/cantidadEstacion?id=2002`);
+    const response6 = await fetch(`http://127.0.0.1:5000/cantidadEstacion?id=2003`);
+    
+    if (!response1.ok) {
+      throw new Error("No se pudo obtener el total de usuarios");
+    }
+
+    if (!response2.ok) {
+      throw new Error("No se pudo obtener el total de plantas");
+    }
+
+    if (!response3.ok) {
+      throw new Error("No se pudo obtener las plantas de primavera");
+    }
+
+    if (!response4.ok) {
+      throw new Error("No se pudo obtener las plantas de verano");
+    }
+
+    if (!response5.ok) {
+      throw new Error("No se pudo obtener las plantas de otoño");
+    }
+
+    if (!response6.ok) {
+      throw new Error("No se pudo obtener las plantas de invierno");
+    }
+
+    const data1 = await response1.json();
+    const data2 = await response2.json();
+    const data3 = await response3.json();
+    const data4 = await response4.json();
+    const data5 = await response5.json();
+    const data6 = await response6.json();
+
+    return {
+      usuarios: data1.total,
+      plantas: data2.total,
+      primavera: data3.total,
+      verano: data4.total,
+      otoño: data5.total,
+      invierno: data6.total
+    };
+
+
+  } catch (error) {
+    console.error("Error al cargar la planta:", error);
+  }
+}
+
+async function cargarRegiones() {
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/cantidadRegion`);
+    
+    if (!response.ok) {
+      throw new Error("No se pudo obtener el total de usuarios");
+    }
+
+    const data = await response.json();
+
+    return {
+      AmericaNorte: data[4],
+      AmericaSur: data[5],
+      Africa: data[3],
+      Asia: data[0],
+      Europa: data[1],
+      Oceania: data[2]
+    };
+
+
+  } catch (error) {
+    console.error("Error al cargar la planta:", error);
+  }
+}

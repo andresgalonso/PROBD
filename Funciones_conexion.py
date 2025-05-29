@@ -209,5 +209,53 @@ def plantas_favoritas(x):
 
     return filas
 
+def cantidad_usuarios():
+    conn=conexion()
+    cur=conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM usuarios")
+
+    fila=cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    return fila
+
+def cantidad_plantas():
+    conn=conexion()
+    cur=conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM plantas")
+
+    fila=cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    return fila
+
+def cantidad_planta_estacion(x):
+    conn=conexion()
+    cur=conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM planta_estacion WHERE id_estacion = :1",[x])
+
+    fila=cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    return fila
+
+def cantidad_region(x):
+    conn=conexion()
+    cur=conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM usuarios WHERE id_region = :1",[x])
+
+    fila=cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    return fila
+
 
 

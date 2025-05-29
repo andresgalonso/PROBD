@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from Funciones_conexion import obtener_planta, obtener_plantas, registrar_usuario, verificar_usuario, obtener_comentarios, obtener_respuestas, registrar_comentario, informacion_usuario, registrar_favorito, plantas_favoritas, registrar_respuesta
+from Funciones_conexion import obtener_planta, obtener_plantas, registrar_usuario, verificar_usuario, obtener_comentarios, obtener_respuestas, registrar_comentario, informacion_usuario, registrar_favorito, plantas_favoritas, registrar_respuesta, cantidad_usuarios, cantidad_plantas, cantidad_planta_estacion, cantidad_region
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -204,6 +204,55 @@ def favoritas():
         })
     
     return jsonify(favoritos)
+
+@app.route("/cantidadUsuarios", methods=["GET"])
+def cantidadUsuarios():
+    fila = cantidad_usuarios()
+
+    if fila:
+        total = {
+            "total": fila[0] 
+        }
+        return jsonify(total)
+    else:
+        return jsonify({"error": "Error en la consulta"}), 404
+    
+@app.route("/cantidadPlantas", methods=["GET"])
+def cantidadPlantas():
+    fila = cantidad_plantas()
+
+    if fila:
+        total = {
+            "total": fila[0] 
+        }
+        return jsonify(total)
+    else:
+        return jsonify({"error": "Error en la consulta"}), 404
+    
+@app.route("/cantidadEstacion", methods=["GET"])
+def cantidadEstaciones():
+    id_estacion = request.args.get('id')
+    fila = cantidad_planta_estacion(id_estacion)
+
+    if fila:
+        total = {
+            "total": fila[0] 
+        }
+        return jsonify(total)
+    else:
+        return jsonify({"error": "Error en la consulta"}), 404
+    
+@app.route("/cantidadRegion", methods=["GET"])
+def cantidadRegion():
+
+    resultado = []
+    try:
+        for i in range(1000, 1006):
+            resultado.append(cantidad_region(i))
+        
+        return jsonify(resultado)
+    except KeyError as e:
+        return jsonify({"error": "Total no encontrado"}), 404 
 
 
     
